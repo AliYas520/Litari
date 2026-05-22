@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../theme/app_theme.dart';
 import '../widgets/litari_logo.dart';
 import 'pilih_bahasa_screen.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -221,8 +222,8 @@ class _SocialLoginRow extends StatelessWidget {
             onPressed: () {},
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                _FacebookIcon(),
+              children: [
+                SvgPicture.asset('assets/Facebook_logo.svg', width: 28, height: 28),
                 SizedBox(width: 8),
                 Text(
                   'facebook',
@@ -242,8 +243,8 @@ class _SocialLoginRow extends StatelessWidget {
             onPressed: () {},
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                _GoogleIcon(),
+              children: [
+                SvgPicture.asset('assets/Google_logo.svg', width: 28, height: 28),
                 SizedBox(width: 8),
                 Text(
                   'Google',
@@ -314,73 +315,4 @@ class _FacebookIcon extends StatelessWidget {
       ),
     );
   }
-}
-
-// Google "G" icon
-class _GoogleIcon extends StatelessWidget {
-  const _GoogleIcon();
-
-  @override
-  Widget build(BuildContext context) {
-    return CustomPaint(
-      size: const Size(28, 28),
-      painter: _GoogleIconPainter(),
-    );
-  }
-}
-
-class _GoogleIconPainter extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    final double cx = size.width / 2;
-    final double cy = size.height / 2;
-    final double r = size.width / 2;
-
-    // Draw the 4 colored arcs of Google G
-    final Paint paint = Paint()
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 4
-      ..strokeCap = StrokeCap.round;
-
-    // Red top-right
-    paint.color = const Color(0xFFEA4335);
-    canvas.drawArc(
-      Rect.fromCircle(center: Offset(cx, cy), radius: r - 2),
-      -1.0, 1.4, false, paint,
-    );
-
-    // Yellow bottom-right
-    paint.color = const Color(0xFFFBBC05);
-    canvas.drawArc(
-      Rect.fromCircle(center: Offset(cx, cy), radius: r - 2),
-      0.4, 1.2, false, paint,
-    );
-
-    // Green bottom-left
-    paint.color = const Color(0xFF34A853);
-    canvas.drawArc(
-      Rect.fromCircle(center: Offset(cx, cy), radius: r - 2),
-      1.6, 1.2, false, paint,
-    );
-
-    // Blue top-left
-    paint.color = const Color(0xFF4285F4);
-    canvas.drawArc(
-      Rect.fromCircle(center: Offset(cx, cy), radius: r - 2),
-      2.8, 1.2, false, paint,
-    );
-
-    // Horizontal bar of G
-    paint
-      ..color = const Color(0xFF4285F4)
-      ..strokeWidth = 4;
-    canvas.drawLine(
-      Offset(cx, cy - 0.5),
-      Offset(cx + r - 2, cy - 0.5),
-      paint,
-    );
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }
